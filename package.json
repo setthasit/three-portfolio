@@ -1,0 +1,15 @@
+{
+  "name": "livly-profile",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "client-api",
+    "client-web"
+  ],
+  "scripts": {
+    "client-api": "yarn workspace client-api",
+    "client-web": "yarn workspace client-web"
+  }
+}

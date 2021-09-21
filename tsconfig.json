@@ -1,0 +1,6 @@
+{
+    "references": [
+        { "path": "client-api" },
+        { "path": "client-web" }
+    ]
+}
