@@ -20,4 +20,3 @@ export class ExperinceCreateInput {
   @Field(() => Date)
   endAt?: Date;
 }
-

@@ -1,4 +1,10 @@
-import { MathUtils, Mesh, MeshStandardMaterial, Scene, SphereGeometry } from "three";
+import {
+  MathUtils,
+  Mesh,
+  MeshStandardMaterial,
+  Scene,
+  SphereGeometry,
+} from 'three';
 
 const generateStar = (scene: Scene) => {
   const geometry = new SphereGeometry(0.25, 10, 10);
@@ -7,8 +13,8 @@ const generateStar = (scene: Scene) => {
 
   const [x, y, z] = [500, 500, 3000].map(() => MathUtils.randFloatSpread(500));
 
-	star.position.set(x, y, z)
-	scene.add(star)
+  star.position.set(x, y, z);
+  scene.add(star);
 };
 
 export default generateStar;

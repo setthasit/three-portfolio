@@ -1,14 +1,14 @@
-import { useEffect, useRef } from "react";
-import HomeExperince from "../components/HomeExperinceCard";
-import HomeSkillCard from "../components/HomeSkillCard";
-import HomeSkillGrid from "../components/HomeSkillGrid";
-import HomeTitle from "../components/HomeTitle";
-import initialThree from "../libs/three/init";
-import { initializeApollo } from "../services/apollo";
+import { useEffect, useRef } from 'react';
+import HomeExperince from '../components/HomeExperinceCard';
+import HomeSkillCard from '../components/HomeSkillCard';
+import HomeSkillGrid from '../components/HomeSkillGrid';
+import HomeTitle from '../components/HomeTitle';
+import initialThree from '../libs/three/init';
+import { initializeApollo } from '../services/apollo';
 import {
   ProfileDocument,
   useProfileQuery,
-} from "../services/profile/profile.document.graphql";
+} from '../services/profile/profile.document.graphql';
 
 const Index = () => {
   const canvasRef = useRef<HTMLCanvasElement>();
@@ -24,7 +24,7 @@ const Index = () => {
     <>
       <canvas
         style={{
-          position: "fixed",
+          position: 'fixed',
           top: 0,
           left: 0,
         }}
@@ -33,22 +33,24 @@ const Index = () => {
 
       <div
         style={{
-          width: "100%",
-          minHeight: "100%",
-          position: "absolute",
-          color: "white",
-          display: "flex",
-          textAlign: "justify",
+          width: '100%',
+          minHeight: '100%',
+          position: 'absolute',
+          color: 'white',
+          display: 'flex',
+          textAlign: 'justify',
           textAlignLast: 'center',
-          alignItems: "center",
-          justifyContent: "center",
-          paddingBottom: "20px"
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingBottom: '20px',
         }}
       >
-        <div style={{
-          maxWidth: '800px',
-          width: "80%",
-        }}>
+        <div
+          style={{
+            maxWidth: '800px',
+            width: '80%',
+          }}
+        >
           <HomeTitle
             name={`${profile.firstName} ${profile.lastName}`}
             coverLetter={profile.coverLetter}

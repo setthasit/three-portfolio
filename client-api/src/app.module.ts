@@ -20,6 +20,11 @@ import { SoftskillResolver } from './softskill/softskill.resolver';
     }),
     ProfileModule,
   ],
-  providers: [ExperienceResolver, HardSkillResolver, LanguageskillResolver, SoftskillResolver],
+  providers: [
+    ExperienceResolver,
+    HardSkillResolver,
+    LanguageskillResolver,
+    SoftskillResolver,
+  ],
 })
 export class AppModule {}

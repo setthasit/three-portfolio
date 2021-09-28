@@ -26,7 +26,7 @@ export class ProfileService {
   public async getProfileBuID(profileID: number) {
     const profiles = await this.profileRepository.findOne({
       where: {
-        id: profileID
+        id: profileID,
       },
       relations: ['experinces', 'hardSkills', 'softSkills', 'languageSkills'],
     });

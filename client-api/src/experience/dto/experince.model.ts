@@ -23,4 +23,3 @@ export class ExperinceModel {
   @Field(() => Date)
   endAt?: Date;
 }
-

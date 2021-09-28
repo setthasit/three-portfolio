@@ -17,17 +17,17 @@ const HomeHardSkill: React.FC<HomeHardSkillProps> = ({
         height: '130px',
         padding: '2px',
         margin: '3px',
-        color: "black",
+        color: 'black',
         borderRadius: '4px',
         backgroundColor: 'rgba(255, 255, 255, 0.75)',
       }}
     >
       <div>
-        <h3>{title}, {confidenceLevel.toLocaleLowerCase()}</h3>
+        <h3>
+          {title}, {confidenceLevel.toLocaleLowerCase()}
+        </h3>
       </div>
-      <div
-        style={{ padding: '0 10px' }}
-      >{description}</div>
+      <div style={{ padding: '0 10px' }}>{description}</div>
     </div>
   );
 };

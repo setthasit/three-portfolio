@@ -18,13 +18,7 @@ import { SoftSkill } from 'src/softskill/softskill.entity';
       password: configuration.database.password,
       database: configuration.database.database,
       autoLoadEntities: true,
-      entities: [
-        Profile,
-        Experince,
-        HardSkill,
-        SoftSkill,
-        LanguageSkill
-      ],
+      entities: [Profile, Experince, HardSkill, SoftSkill, LanguageSkill],
       migrations: ['src/migrations/*.ts'],
       cli: {
         migrationsDir: 'src/migrations',

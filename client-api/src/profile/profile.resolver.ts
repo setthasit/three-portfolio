@@ -11,36 +11,38 @@ import { ProfileService } from './profile.service';
 export class ProfileResolver {
   constructor(private readonly profileService: ProfileService) {}
 
-  @Query(() => [ProfileModel], { name: "profiles" })
+  @Query(() => [ProfileModel], { name: 'profiles' })
   async getProfile(): Promise<ProfileModel[]> {
     const result = await this.profileService.getProfiles();
 
     return result;
   }
 
-  @Query(() => ProfileModel, { name: "profile" })
-  async getProfileByID(
-    @Args('id') profileID: number,
-  ): Promise<ProfileModel> {
+  @Query(() => ProfileModel, { name: 'profile' })
+  async getProfileByID(@Args('id') profileID: number): Promise<ProfileModel> {
     const result = await this.profileService.getProfileBuID(profileID);
 
     return result;
   }
 
-  @Mutation(() => ProfileCreateObject, { name: "createProfile" })
+  @Mutation(() => ProfileCreateObject, { name: 'createProfile' })
   async createProfile(
     @Args('profile') profile: ProfileCreateInput,
-    @Args({ name: 'experinces', type: () => [ExperinceCreateInput]}) experinces: [ExperinceCreateInput],
-    @Args({name:'hardSkills', type: () => [HardSkillCreateInput]}) hardSkills: [HardSkillCreateInput],
-    @Args({name:'softSkills', type: () => [SoftSkillCreateInput]}) softSkills: [SoftSkillCreateInput],
-    @Args({name:'languageSkills', type: () => [LangaugeSkillCreateInput]}) languageSkills: [LangaugeSkillCreateInput],
+    @Args({ name: 'experinces', type: () => [ExperinceCreateInput] })
+    experinces: [ExperinceCreateInput],
+    @Args({ name: 'hardSkills', type: () => [HardSkillCreateInput] })
+    hardSkills: [HardSkillCreateInput],
+    @Args({ name: 'softSkills', type: () => [SoftSkillCreateInput] })
+    softSkills: [SoftSkillCreateInput],
+    @Args({ name: 'languageSkills', type: () => [LangaugeSkillCreateInput] })
+    languageSkills: [LangaugeSkillCreateInput],
   ): Promise<ProfileCreateObject> {
     const result = await this.profileService.createProfiles(
       profile,
       experinces,
       hardSkills,
       softSkills,
-      languageSkills
+      languageSkills,
     );
 
     return result;

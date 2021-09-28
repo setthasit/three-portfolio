@@ -1,16 +1,16 @@
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { MutableRefObject } from "react";
-import { ProfileQuery } from "../../services/profile/profile.document.graphql";
-import generateStar from "./functions/generateStar";
-import generateLight from "./functions/generateLight";
-import loadModel from "./functions/loadModel";
-import { Model3D } from "./types/model3d";
-import { MathUtils } from "three";
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { MutableRefObject } from 'react';
+import { ProfileQuery } from '../../services/profile/profile.document.graphql';
+import generateStar from './functions/generateStar';
+import generateLight from './functions/generateLight';
+import loadModel from './functions/loadModel';
+import { Model3D } from './types/model3d';
+import { MathUtils } from 'three';
 
 const initialThree = (
   ref: MutableRefObject<HTMLCanvasElement>,
-  data: ProfileQuery
+  data: ProfileQuery,
 ) => {
   const { profile } = data;
 
@@ -21,7 +21,7 @@ const initialThree = (
     75,
     window.innerWidth / window.innerHeight,
     0.1,
-    1000
+    1000,
   );
 
   // Create renderer
@@ -43,7 +43,7 @@ const initialThree = (
 
   let models: Model3D[] = [];
   for (let index = 0; index < 50; index++) {
-    loadModel("static/dancing_stormtrooper/scene.gltf", scene, models);
+    loadModel('static/dancing_stormtrooper/scene.gltf', scene, models);
   }
 
   renderer.render(scene, camera);

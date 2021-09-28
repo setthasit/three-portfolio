@@ -1,15 +1,17 @@
 const HomeSkillGrid: React.FC = ({ children }) => {
-    return <div
-        style={{
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexWrap: 'wrap'
-        }}    
+  return (
+    <div
+      style={{
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+      }}
     >
-        {children}
+      {children}
     </div>
-}
+  );
+};
 
-export default HomeSkillGrid
+export default HomeSkillGrid;

@@ -1,6 +1,14 @@
 import { registerEnumType } from '@nestjs/graphql';
 import { Profile } from 'src/profile/profile.entity';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 export enum SoftSkillConfidenceLevel {
   NOT_AT_ALL = 'NOT_AT_ALL',
@@ -10,8 +18,8 @@ export enum SoftSkillConfidenceLevel {
 }
 
 registerEnumType(SoftSkillConfidenceLevel, {
-  name: 'SoftSkillConfidenceLevel'
-})
+  name: 'SoftSkillConfidenceLevel',
+});
 
 @Entity()
 export class SoftSkill {

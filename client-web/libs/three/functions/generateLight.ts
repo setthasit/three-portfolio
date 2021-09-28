@@ -1,4 +1,4 @@
-import { AmbientLight, PointLight, Scene } from "three";
+import { AmbientLight, PointLight, Scene } from 'three';
 
 const generateLight = (scene: Scene) => {
   const pointLight = new PointLight(0xffffff);
