@@ -10,5 +10,14 @@ export class ExperinceCreateInput {
 
   @Field(() => String)
   description: string;
+
+  @Field(() => Boolean)
+  isCurrent: boolean;
+
+  @Field(() => Date)
+  startAt: Date;
+
+  @Field(() => Date)
+  endAt?: Date;
 }
 

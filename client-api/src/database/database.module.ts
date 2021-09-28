@@ -11,6 +11,7 @@ import { SoftSkill } from 'src/softskill/softskill.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
+      useUTC: true,
       host: configuration.database.host,
       port: configuration.database.port,
       username: configuration.database.username,

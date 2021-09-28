@@ -11,14 +11,23 @@ import { ProfileService } from './profile.service';
 export class ProfileResolver {
   constructor(private readonly profileService: ProfileService) {}
 
-  @Query(() => [ProfileModel])
+  @Query(() => [ProfileModel], { name: "profiles" })
   async getProfile(): Promise<ProfileModel[]> {
     const result = await this.profileService.getProfiles();
 
     return result;
   }
 
-  @Mutation(() => ProfileCreateObject)
+  @Query(() => ProfileModel, { name: "profile" })
+  async getProfileByID(
+    @Args('id') profileID: number,
+  ): Promise<ProfileModel> {
+    const result = await this.profileService.getProfileBuID(profileID);
+
+    return result;
+  }
+
+  @Mutation(() => ProfileCreateObject, { name: "createProfile" })
   async createProfile(
     @Args('profile') profile: ProfileCreateInput,
     @Args({ name: 'experinces', type: () => [ExperinceCreateInput]}) experinces: [ExperinceCreateInput],

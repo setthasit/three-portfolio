@@ -23,6 +23,17 @@ export class ProfileService {
     return profiles;
   }
 
+  public async getProfileBuID(profileID: number) {
+    const profiles = await this.profileRepository.findOne({
+      where: {
+        id: profileID
+      },
+      relations: ['experinces', 'hardSkills', 'softSkills', 'languageSkills'],
+    });
+
+    return profiles;
+  }
+
   public async createProfiles(
     profileInput: ProfileCreateInput,
     expsInput: ExperinceCreateInput[],

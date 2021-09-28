@@ -1,5 +1,13 @@
 import { Profile } from 'src/profile/profile.entity';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Experince {
@@ -14,6 +22,15 @@ export class Experince {
 
   @Column()
   description: string;
+
+  @Column()
+  isCurrent: boolean;
+
+  @Column()
+  startAt: Date;
+
+  @Column()
+  endAt?: Date;
 
   @ManyToOne(() => Profile, (profile) => profile.experinces)
   profile: Profile;
