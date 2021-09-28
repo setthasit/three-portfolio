@@ -1,6 +1,8 @@
 # Three.js Portfolio
-
 This project build for learning purpose, nothing to expected here. and ofcourse nothing make sense here either. this project create to learn the basic of Three.js which contain the functionality of `generate 3d object`, `camera control & positioning`, `Loading 3D model & animation`.
+
+And here some of the not final result of this project
+![Web Page](./docs/images/result.png)
 
 ## This Project Create With
 Backend: Nest.js + Typescript + GraphQL API
