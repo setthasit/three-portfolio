@@ -1,4 +1,4 @@
-schema: '**/*.graphqls'
+schema: 'http://localhost:8888/api/v1'
 documents: '**/*.graphql'
 plugins:
   - typescript-operations

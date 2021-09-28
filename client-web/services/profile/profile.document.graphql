@@ -1,0 +1,34 @@
+query Profile($profileID: Float!) {
+  profile(id: $profileID) {
+    id
+    firstName
+    lastName
+    coverLetter
+    email
+    github
+    experinces {
+      id
+      title
+      company
+      description
+    }
+    hardSkills {
+      id
+      title
+      description
+      confidenceLevel
+    }
+    softSkills {
+      id
+      title
+      description
+      confidenceLevel
+    }
+    languageSkills {
+      id
+      title
+      description
+      confidenceLevel
+    }
+  }
+}

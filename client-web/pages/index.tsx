@@ -1,72 +1,104 @@
-import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useRef } from "react";
+import initialThree from "../libs/three/init";
+import { initializeApollo } from "../services/apollo";
 import {
-  ViewerQuery,
-  useViewerQuery,
-  useUpdateNameMutation,
-  ViewerDocument,
-} from '../lib/viewer.graphql'
-import { initializeApollo } from '../lib/apollo'
+  ProfileDocument,
+  useProfileQuery,
+} from "../services/profile/profile.document.graphql";
 
 const Index = () => {
-  const { viewer } = useViewerQuery().data!
-  const [newName, setNewName] = useState('')
-  const [updateNameMutation] = useUpdateNameMutation()
+  const canvasRef = useRef<HTMLCanvasElement>();
+  const { profile } = useProfileQuery({ variables: { profileID: 1 } }).data;
 
-  const onChangeName = () => {
-    updateNameMutation({
-      variables: {
-        name: newName,
-      },
-      //Follow apollo suggestion to update cache
-      //https://www.apollographql.com/docs/angular/features/cache-updates/#update
-      update: (cache, mutationResult) => {
-        const { data } = mutationResult
-        if (!data) return // Cancel updating name in cache if no data is returned from mutation.
-        // Read the data from our cache for this query.
-        const { viewer } = cache.readQuery({
-          query: ViewerDocument,
-        }) as ViewerQuery
-        const newViewer = { ...viewer }
-        // Add our comment from the mutation to the end.
-        newViewer.name = data.updateName.name
-        // Write our data back to the cache.
-        cache.writeQuery({ query: ViewerDocument, data: { viewer: newViewer } })
-      },
-    })
-  }
+  useEffect(() => {
+    if (canvasRef && profile) {
+      initialThree(canvasRef, { profile });
+    }
+  }, []);
 
   return (
-    <div>
-      You're signed in as {viewer.name} and you're {viewer.status}. Go to the{' '}
-      <Link href="/about">
-        <a>about</a>
-      </Link>{' '}
-      page.
-      <div>
-        <input
-          type="text"
-          placeholder="your new name..."
-          onChange={(e) => setNewName(e.target.value)}
-        />
-        <input type="button" value="change" onClick={onChangeName} />
+    <>
+      <canvas
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+        }}
+        ref={canvasRef}
+      ></canvas>
+
+      <div
+        style={{
+          width: "100%",
+          minHeight: "100%",
+          position: "absolute",
+          color: "white",
+          display: "flex",
+          textAlign: "center",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div style={{
+          width: "80%",
+        }}>
+          <h1>{`${profile.firstName} ${profile.lastName}`}</h1>
+          {/* Intro */}
+          <div>{profile.coverLetter}</div>
+
+          {/* you can find me */}
+          <h2>Where you can find me</h2>
+          <div>
+            <div>
+              Github: {profile.github}
+            </div>
+            <div>
+              Email: {profile.email}
+            </div>
+          </div>
+
+          {/* Technical skills */}
+          <h2>Technical Skills</h2>
+          <div>
+            {profile.hardSkills.map((skill) => (
+              <div>
+                {`${skill.title}, ${skill.confidenceLevel}`}
+                <div>{skill.description}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Work experinces */}
+          <h2>Experinces</h2>
+          <div>
+            {profile.experinces.map((exp) => (
+              <div>
+                {`${exp.title}, ${exp.company}`}
+                <div>{exp.description}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-  )
-}
+    </>
+  );
+};
 
 export async function getStaticProps() {
-  const apolloClient = initializeApollo()
+  const apolloClient = initializeApollo();
 
-  await apolloClient.query({
-    query: ViewerDocument,
-  })
+  const data = await apolloClient.query({
+    query: ProfileDocument,
+    variables: {
+      profileID: 1,
+    },
+  });
 
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
     },
-  }
+  };
 }
 
-export default Index
+export default Index;
