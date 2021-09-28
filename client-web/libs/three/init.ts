@@ -6,6 +6,7 @@ import generateStar from "./functions/generateStar";
 import generateLight from "./functions/generateLight";
 import loadModel from "./functions/loadModel";
 import { Model3D } from "./types/model3d";
+import { MathUtils } from "three";
 
 const initialThree = (
   ref: MutableRefObject<HTMLCanvasElement>,
@@ -33,8 +34,6 @@ const initialThree = (
   renderer.setSize(window.innerWidth, window.innerHeight);
   camera.position.setZ(150);
 
-  renderer.render(scene, camera);
-
   // Add lighting
   generateLight(scene);
   // Add stars
@@ -42,12 +41,14 @@ const initialThree = (
     generateStar(scene);
   }
 
+  let models: Model3D[] = [];
+  for (let index = 0; index < 50; index++) {
+    loadModel("static/dancing_stormtrooper/scene.gltf", scene, models);
+  }
+
   renderer.render(scene, camera);
 
   animate();
-
-  let models: Model3D[] = [];
-  loadModel("static/dancing_stormtrooper/scene.gltf", scene, models);
 
   function animate() {
     requestAnimationFrame(animate);
